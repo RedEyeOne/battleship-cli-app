@@ -14,6 +14,8 @@ export function printBoard(board, debug) {
             if (debug === true && cell.type !== 'empty') {
                 if (cell.type === 'small') boardObject[colKey].push('🟠');
                 if  (cell.type === 'large') boardObject[colKey].push('🔵');
+                else boardObject[colKey].push('?');
+                console.log(cell);
                 continue;
             }
                 
@@ -22,6 +24,5 @@ export function printBoard(board, debug) {
 
         }
     }
-    console.log(boardObject['A'][2]);
     console.table(boardObject);
 } 

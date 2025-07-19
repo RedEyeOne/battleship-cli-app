@@ -10,18 +10,53 @@ export function makeBoardData (number) {
         return board;
 }
 
-export function placeShip (board, shipSize, quantity) {
-    let startingPoint;
-    for (let number in quantity) {
-        let orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+export function placeShip(board, shipSize, quantity) {
+    function canPlaceShip(board, shipSize, orientation, row, col) {
+        const boardHeight = board.length;
+        const boardWidth = board[0].length;
+
         if (orientation === 'horizontal') {
-            let row = Math.floor(Math.random() * board[0].length);
-            let col = Math.floor(Math.random() * board[0][0]);
+            if (col + shipSize > boardWidth) return false;
+            for (let i = 0; i < shipSize; i++) {
+                if (board[row][col + i].type !== 'empty') return false;
+            }
+        } else if (orientation === 'vertical') {
+            if (row + shipSize > boardHeight) return false;
+            for (let i = 0; i < shipSize; i++) {
+                if (board[row + i][col].type !== 'empty') return false;
+            }
         }
-        else if (orientation === 'vertical') {
-            let row = Math.floor(Math.random() * board[0].length);
-            let col = Math.floor(Math.random() * board[0][0]);
+
+        return true;
+    }
+
+    function addShip(board, shipSize, orientation, row, col) {
+        const shipId = Math.floor(Math.random() * 10000); // random unique-ish ID
+        const shipType = shipSize >= 3 ? "large" : "small";
+        for (let i = 0; i < shipSize; i++) {
+            if (orientation === 'horizontal') {
+                board[row][col + i] = { type: shipType, id: shipId, hit: false };
+            } else if (orientation === 'vertical') {
+                board[row + i][col] = { type: shipType, id: shipId, hit: false };
+            }
         }
     }
-    return board
+
+    let placed = 0;
+    const maxAttempts = 100;
+
+    while (placed < quantity) {
+        let orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+        let row = Math.floor(Math.random() * board.length);
+        let col = Math.floor(Math.random() * board[0].length);
+
+        if (canPlaceShip(board, shipSize, orientation, row, col)) {
+            addShip(board, shipSize, orientation, row, col);
+            placed++;
+        }
+
+        if (placed >= quantity) break; // just a guard
+    }
+
+    return board;
 }
