@@ -31,7 +31,7 @@ export function placeShip(board, shipSize, quantity) {
     }
 
     function addShip(board, shipSize, orientation, row, col) {
-        const shipId = Math.floor(Math.random() * 10000); // random unique-ish ID
+        const shipId = Math.floor(Math.random() * 10000);
         const shipType = shipSize >= 3 ? "large" : "small";
         for (let i = 0; i < shipSize; i++) {
             if (orientation === 'horizontal') {
@@ -42,20 +42,19 @@ export function placeShip(board, shipSize, quantity) {
         }
     }
 
+    console.log(`⛵ Placing ${quantity} ship(s) of size ${shipSize}...`);
+
     let placed = 0;
-    const maxAttempts = 100;
 
     while (placed < quantity) {
-        let orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
-        let row = Math.floor(Math.random() * board.length);
-        let col = Math.floor(Math.random() * board[0].length);
+        const orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+        const row = Math.floor(Math.random() * board.length);
+        const col = Math.floor(Math.random() * board[0].length);
 
         if (canPlaceShip(board, shipSize, orientation, row, col)) {
             addShip(board, shipSize, orientation, row, col);
             placed++;
         }
-
-        if (placed >= quantity) break; // just a guard
     }
 
     return board;

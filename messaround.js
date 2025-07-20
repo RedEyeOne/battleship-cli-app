@@ -19,6 +19,21 @@ import {startGame} from './gamefiles/gameLogic.js';
 //     { type: "empty", hit: false }, // Represents position C2
 //   ],
 // ];  
-let board = makeBoardData(5);
+let size = startGame();
 
-startGame();
+let board = makeBoardData(size);
+
+if (size === '4') {
+  board = placeShip(board, 3, 1);
+  board = placeShip(board, 2, 1);
+}
+if (size === '5') {
+  board = placeShip(board, 3, 1);
+  board = placeShip(board, 2, 2);
+}
+if (size === '6') {
+  board = placeShip(board, 3, 2);
+  board = placeShip(board, 2, 2);
+}
+
+printBoard(board, true);

@@ -16,12 +16,13 @@ export function winCondition(board) {
 
 export function startGame() {
     let sizes =  [4, 5, 6]
+    let size;
     console.log('Welcome to Battleship 🚢');
     let sizeDecided = false;
-    let size = readlineSync.question('Choose a Board Size \n 4 - 5 - 6');
 
     while (!sizeDecided) {
-        let size = readlineSync.question('Choose a Board Size \n 4 - 5 - 6');
+        size = readlineSync.question('Choose a Board Size \n 4 - 5 - 6 \n Answer: ');
         if (sizes.includes(Number(size))) sizeDecided = true;
     }
+    return size;
 }
