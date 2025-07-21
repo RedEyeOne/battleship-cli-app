@@ -1,5 +1,5 @@
 import {generateBoardMap, printBoard} from './gamefiles/printTable.js'
-import {makeBoardData, placeShip} from './gamefiles/boards.js';
+import {makeBoardData, placeShip} from './gamefiles/ships.js';
 import {startGame ,winCondition, makeGuess} from './gamefiles/gameLogic.js';
 
 

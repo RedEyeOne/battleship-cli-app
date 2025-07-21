@@ -4,7 +4,8 @@
   "description": "Today we're going to build a game of battleship in your CLI (Command Line Interface)",
   "main": "messaround.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-game": "node messaround.js"
   },
   "repository": {
     "type": "git",

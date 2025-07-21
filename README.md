@@ -1,3 +1,11 @@
+to start the game type "npm run start-game"
+
+
+
+
+
+
+
 # Battleship Project
 
 ## Introduction

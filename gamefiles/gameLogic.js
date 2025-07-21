@@ -36,5 +36,5 @@ export function makeGuess(board, boardMap)  {
     board[col][row].hit = true;
       const letters = 'abcdefghijklmnopqrstuvwxyz';
 
-    console.log(`Firing missiles at ${letters[row].toUpperCase()}${col}`);
+    console.log(`Firing missiles at ${letters[row].toUpperCase(git)}${col}`);
 }
