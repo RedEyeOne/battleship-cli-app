@@ -36,5 +36,7 @@ export function makeGuess(board, boardMap)  {
     board[col][row].hit = true;
       const letters = 'abcdefghijklmnopqrstuvwxyz';
 
-    console.log(`Firing missiles at ${letters[row].toUpperCase(git)}${col}`);
+    console.log(`Firing missiles at ${letters[row].toUpperCase()}${col}`);
+    if (board[col][row].type !== 'empty') console.log('Commander, You Got A HIT!');
+    else console.log('No target found commander.');
 }

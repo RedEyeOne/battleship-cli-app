@@ -23,7 +23,7 @@ if (size === '6') {
   board = placeShip(board, 2, 2);
 }
 
-printBoard(board, true);
+printBoard(board, false);
 
 while (!winCondition(board)) {
   makeGuess(board, boardMap);
@@ -45,7 +45,7 @@ console.log(banner);
 
 
 
-// reference board
+// board for reference 
 
 // const board = [
 //   [

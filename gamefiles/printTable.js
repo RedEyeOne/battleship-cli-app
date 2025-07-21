@@ -21,11 +21,11 @@ export function printBoard(board, debug) {
             if (cell.hit === true && cell.type !== 'empty') {
                 if (cell.type === 'small') {
                     boardObject[colKey].push('🟠');
-                    console.log('You\'ve got a HIT at ' + colKey[col] + row);
+                    // console.log('You\'ve got a HIT at ' + colKey + row);
                 };
                 if  (cell.type === 'large') {
                     boardObject[colKey].push('🔵');
-                    console.log('You\'ve got a HIT at ' + colKey[col] + row);
+                    // console.log('You\'ve got a HIT at ' + colKey + row);
                 };
             }
             else if (cell.hit === true) boardObject[colKey].push("x");
