@@ -1,27 +1,14 @@
-import {printBoard} from './gamefiles/printTable.js'; 
-import {makeBoardData} from './gamefiles/boards.js';
-import {placeShip} from './gamefiles/boards.js';
-import {startGame} from './gamefiles/gameLogic.js';
-// const board = [
-//   [
-//     { type: "large", id: 1, hit: false }, // Represents position A0
-//     { type: "small", hit: false }, // Represents position A1
-//     { type: "small", hit: false }, // Represents position A2
-//   ],
-//   [
-//     { type: "large", id: 1, hit: false }, // Represents position B0
-//     { type: "empty", hit: false }, // Represents position B1
-//     { type: "empty", hit: false }, // Represents position B2
-//   ],
-//   [
-//     { type: "large", id: 1, hit: false }, // Represents position C0
-//     { type: "empty", hit: false }, // Represents position C1
-//     { type: "empty", hit: false }, // Represents position C2
-//   ],
-// ];  
+import {generateBoardMap, printBoard} from './gamefiles/printTable.js'
+import {makeBoardData, placeShip} from './gamefiles/boards.js';
+import {startGame ,winCondition, makeGuess} from './gamefiles/gameLogic.js';
+
+
+// main 
 let size = startGame();
 
 let board = makeBoardData(size);
+
+let boardMap = generateBoardMap(size);
 
 if (size === '4') {
   board = placeShip(board, 3, 1);
@@ -37,3 +24,43 @@ if (size === '6') {
 }
 
 printBoard(board, true);
+
+while (!winCondition(board)) {
+  makeGuess(board, boardMap);
+  printBoard(board,false);
+}
+
+const banner = `
+========
+__   _______ _   _   _    _ _____ _   _
+\\ \\ / /  _  | | | | | |  | |_   _| \\ | |
+ \\ V /| | | | | | | | |  | | | | |  \\| |
+  \\ / | | | | | | | | |/\\| | | | | . ' |
+  | | \\ \\_/ / |_| | \\  /\\  /_| |_| |\\  |
+  \\_/  \\___/ \\___/   \\/  \\/ \\___/\\_| \\_/
+========
+`;
+
+console.log(banner);
+
+
+
+// reference board
+
+// const board = [
+//   [
+//     { type: "large", id: 1, hit: false }, // A0
+//     { type: "small", id: 2, hit: true }, // A1
+//     { type: "small", id: 2, hit: false }, // A2
+//   ],
+//   [
+//     { type: "large", id: 1, hit: false }, // B0
+//     { type: "empty", hit: false }, // B1
+//     { type: "empty", hit: true }, // B2
+//   ],
+//   [
+//     { type: "large", id: 1, hit: false }, // C0
+//     { type: "empty", hit: false }, // C1
+//     { type: "empty", hit: false }, // C2
+//   ],
+// ];

@@ -1,8 +1,5 @@
 import readlineSync from 'readline-sync';
 
-
-
-
 export function winCondition(board) {
     for (let row of board) {
         for (let cell of row) {
@@ -25,4 +22,19 @@ export function startGame() {
         if (sizes.includes(Number(size))) sizeDecided = true;
     }
     return size;
+}
+
+export function makeGuess(board, boardMap)  {
+    let guess = readlineSync.question('Commander, what cordinates shall we lauch the missiles?: ').toLowerCase().replace(/\s/g, '');
+    let coordinates = boardMap[guess];
+    if (!coordinates) {
+        console.log("⚠️ Invalid coordinates. Try again.");
+        return makeGuess(board, boardMap); // Ask again 
+    }
+    let [row, col] = coordinates;
+    console.clear();
+    board[col][row].hit = true;
+      const letters = 'abcdefghijklmnopqrstuvwxyz';
+
+    console.log(`Firing missiles at ${letters[row].toUpperCase()}${col}`);
 }
